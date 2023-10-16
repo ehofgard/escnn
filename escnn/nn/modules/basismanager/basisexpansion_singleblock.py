@@ -57,7 +57,7 @@ class SingleBlockBasisExpansion(torch.nn.Module, BasisManager):
         # basis has shape (p, k, o, i)
         # permute to (k, o, i, p)
         sampled_basis = basis.sample(torch.tensor(
-            points, dtype=torch.float32
+            points, dtype=torch.float64
         )).permute(1, 2, 3, 0)
 
         # normalize the basis

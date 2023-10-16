@@ -279,8 +279,8 @@ class SteerableKernelBasis(KernelBasis):
 
         ################
 
-        A_inv = torch.tensor(in_repr.change_of_basis_inv, dtype=torch.float32).clone()
-        B = torch.tensor(out_repr.change_of_basis, dtype=torch.float32).clone()
+        A_inv = torch.tensor(in_repr.change_of_basis_inv, dtype=torch.float64).clone()
+        B = torch.tensor(out_repr.change_of_basis, dtype=torch.float64).clone()
 
         if not torch.allclose(A_inv, torch.eye(in_repr.size)):
             self.register_buffer('A_inv', A_inv)

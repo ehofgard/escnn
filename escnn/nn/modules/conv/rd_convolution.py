@@ -18,7 +18,7 @@ import torch
 from torch.nn import Parameter
 import numpy as np
 import math
-
+torch.set_default_dtype(torch.float64)
 
 __all__ = ["_RdConv"]
 

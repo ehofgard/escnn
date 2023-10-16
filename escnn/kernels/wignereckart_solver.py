@@ -78,8 +78,8 @@ class WignerEckartBasis(IrrepBasis):
             torch.einsum(
                 # 'mnsi,koi->mnkso',
                 'mnsi,koi->ksmno',
-                torch.tensor(group._clebsh_gordan_coeff(self.n, self.m, j), dtype=torch.float32),
-                torch.tensor(group.irrep(*j).endomorphism_basis(), dtype=torch.float32),
+                torch.tensor(group._clebsh_gordan_coeff(self.n, self.m, j), dtype=torch.float64),
+                torch.tensor(group.irrep(*j).endomorphism_basis(), dtype=torch.float64),
             ) for j in self.js
         ]
         
@@ -344,9 +344,9 @@ class RestrictedWignerEckartBasis(IrrepBasis):
                 torch.einsum(
                     # 'nmsi,kji,jyt->nmksty',
                     'nmsi,kji,jyt->kstnmy',
-                    torch.tensor(G._clebsh_gordan_coeff(self.n, self.m, j), dtype=torch.float32),
-                    torch.tensor(G.irrep(*j).endomorphism_basis(), dtype=torch.float32),
-                    torch.tensor(id_coeff, dtype=torch.float32),
+                    torch.tensor(G._clebsh_gordan_coeff(self.n, self.m, j), dtype=torch.float64),
+                    torch.tensor(G.irrep(*j).endomorphism_basis(), dtype=torch.float64),
+                    torch.tensor(id_coeff, dtype=torch.float64),
                 ).reshape((-1, out_irrep.size, in_irrep.size, Y_size))
                 for j, id_coeff in _js_restriction[_j]
             ]
